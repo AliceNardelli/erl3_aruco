@@ -31,11 +31,11 @@ The robot behavior is organized as follow. The robot reach the centre of the roo
 
 * **simulation.cpp** is an already implemented node. It is the server of **/oracle_hint** service, it takes as request an id and respond with an hint which can be correctly perceived or malformed. Moreover it is the Oracle which responds if the hypothesis to check is correct or not. 
 
-![Sequence Diagram](component2.jpg)
+![Sequence Diagram](component.jpg)
 
 The component diagram shows the modularity of this architecture and how the main functionalities are well separated among components. At centre is well visible **FSM.py** node which menages the whole simulation. In the component diagram in the action communication protocol the feedback channel it is not represented since it is never used.
 
-![Sequence Diagram](sequence.jpg)
+![Sequence Diagram](component2.jpg)
 
 The sequence diagram shows how the nodes communicate each time the robot enter in the new room. It is clear how the centre of the whole simulation is **FSM.py** since it synchronize it selfs with other nodes with service/client communication protocol or action server/action client one.
 
