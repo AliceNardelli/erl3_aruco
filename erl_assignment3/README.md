@@ -1,5 +1,7 @@
 # Experimental Robotics Laboratory - Assignment3
 ![Sequence Diagram](cluedo_game.JPG)
+
+
 This assignment is the third version of the autonomous Cluedo game. In that case the robot should explore an apartment and look for aruco that once detected they retriev the id on an hint. The robot goes on in looking for hint since the correct hypothesis is found. In that case the aim of the assignment is implement/use a proper navigation algorithm and use cv_bridge and the aruco library in order to collect hints.
 
 ## Software Architecture
