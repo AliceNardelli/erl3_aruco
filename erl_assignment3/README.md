@@ -1,5 +1,5 @@
 # Experimental Robotics Laboratory - Assignment3
-![Sequence Diagram](cluedo_game.JPG)
+![Sequence Diagram](cluedo_game.jpg)
 
 
 This assignment is the third version of the autonomous Cluedo game. In that case the robot should explore an apartment and look for aruco that once detected they retriev the id on an hint. The robot goes on in looking for hint since the correct hypothesis is found. In that case the aim of the assignment is implement/use a proper navigation algorithm and use cv_bridge and the aruco library in order to collect hints.
@@ -8,7 +8,7 @@ This assignment is the third version of the autonomous Cluedo game. In that case
 
 ### Robot Model
 
-![Sequence Diagram](robot.JPG)
+![Sequence Diagram](robot.jpg)
 
 **sherlock_robot.gazebo** and **sherlock_robot.xacro** files in the urdf folder contains the model of the used robot.
 Moreover the robot has a derivative controller. It is equipped with two cameras one at heigth of 0.5m pointing in front of the robot and the other pointing at the floor. Moreover the robot is equipped of lasers.
@@ -31,11 +31,11 @@ The robot behavior is organized as follow. The robot reach the centre of the roo
 
 * **simulation.cpp** is an already implemented node. It is the server of **/oracle_hint** service, it takes as request an id and respond with an hint which can be correctly perceived or malformed. Moreover it is the Oracle which responds if the hypothesis to check is correct or not. 
 
-![Sequence Diagram](component2.JPG)
+![Sequence Diagram](component2.jpg)
 
 The component diagram shows the modularity of this architecture and how the main functionalities are well separated among components. At centre is well visible **FSM.py** node which menages the whole simulation. In the component diagram in the action communication protocol the feedback channel it is not represented since it is never used.
 
-![Sequence Diagram](sequence.JPG)
+![Sequence Diagram](sequence.jpg)
 
 The sequence diagram shows how the nodes communicate each time the robot enter in the new room. It is clear how the centre of the whole simulation is **FSM.py** since it synchronize it selfs with other nodes with service/client communication protocol or action server/action client one.
 
@@ -91,8 +91,8 @@ Run the overall simulation:
 ## Running code
 Here are present two different screenshots of the shell during the exploration of the environment.
 Moreover a video is available in the folder, it represent the exploration of the first room.
-![Sequence Diagram](shell1.JPG)
-![Sequence Diagram](shell2.JPG)
+![Sequence Diagram](shell1.jpg)
+![Sequence Diagram](shell2.jpg)
 
 ## Working hypothesis and environment
 
