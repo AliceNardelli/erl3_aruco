@@ -38,8 +38,23 @@ bool oracleService(erl2::Oracle::Request &req, erl2::Oracle::Response &res)
 
 bool oracleCallback(exp_assignment3::Marker::Request &req, exp_assignment3::Marker::Response &res)
 {
-	res.oracle_hint = oracle_msgs[req.markerId-11];
-	return true;
+
+if (req.markerId >= 11 && req.markerId <=40){
+
+res.oracle_hint = oracle_msgs[req.markerId-11];
+
+}
+
+else{
+
+res.oracle_hint.ID = req.markerId ;
+res.oracle_hint.key = "";
+res.oracle_hint.value = "";
+
+}
+
+return true;
+
 } 
 
 int main(int argc, char **argv)

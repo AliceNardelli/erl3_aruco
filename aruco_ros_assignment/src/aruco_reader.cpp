@@ -26,11 +26,11 @@
  or implied, of Rafael Muñoz Salinas.
  ********************************/
 /**
- * @file marker_publish.cpp
- * @author Bence Magyar
- * @date June 2014
- * @brief Modified copy of simple_single.cpp to publish all markers visible
- * (modified by Josh Langsfeld, 2014)
+ * @file aruco_reader.cpp
+ * @author Alice Nardelli
+ * @date February 2022
+ * @brief Modified copy of marker_publishe.cpp to publish only the id of all markers visible
+ * (modified by Alice Nardelli, 2022)
  */
 
 #include <iostream>
@@ -75,17 +75,20 @@ public:
   ArucoMarkerPublisher() :
       nh_("~"), it1_(nh_), useCamInfo1_(true),it2_(nh_), useCamInfo2_(true)
   {
+    //two subscribers one for each camera of the robot
     image_sub1_ = it1_.subscribe("/robot/camera1/image_raw", 1, &ArucoMarkerPublisher::image_callback1, this);
     image_sub2_ = it2_.subscribe("/robot/camera2/image_raw", 1, &ArucoMarkerPublisher::image_callback2, this);
     //image_pub_ = it_.advertise("result", 1);
     //debug_pub_ = it_.advertise("debug", 1);
+    //a single publisher for both the camera
     pub_id =nh_.advertise<std_msgs::Int64>("/id_aruco", 1000);
     nh_.param<bool>("use_camera_info", useCamInfo1_, false);
     nh_.param<bool>("use_camera_info_floor", useCamInfo2_, false);
     camParam1_ = aruco::CameraParameters();
     camParam2_ = aruco::CameraParameters();
   }
-
+  
+  //each camera has its own callback
   void image_callback1(const sensor_msgs::ImageConstPtr& msg)
   {
     //bool publishImage = image_pub_.getNumSubscribers() > 0;
@@ -105,10 +108,10 @@ public:
       // ok, let's detect
       mDetector1_.detect(inImage1_, markers1_, camParam1_, marker_size1_, false);
 
-	//std::cout << "The id of the detected marker detected is: ";
+	//publish all the detected id on the /aruco_id topic
         for (std::size_t i = 0; i < markers1_.size(); ++i)
         {
-        //std::cout << markers_.at(i).id << " ";
+        
           std_msgs::Int64 msg;
 
     	  msg.data =  markers1_.at(i).id;

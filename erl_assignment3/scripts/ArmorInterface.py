@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-"""
+'''
 Module:
 	ArmorInterface
 Author:
@@ -11,10 +11,8 @@ Sevice Client:
        /oracle_solution sevice called to get the id of the correct hypothesis
        /armor_interface_srv service called to load messages and interface with armor
        /announce_service called to start the announce hypothesis behavior
-Subscribers:
-       /oracle_hint to get the hints
-       
-"""
+     
+'''
 
 import sys
 import rospy
@@ -23,7 +21,8 @@ import erl2.msg
 from erl2.msg import ErlOracle
 import math
 import time
-from erl2.srv import Oracle, Announcement, ArmorInterface, ArmorInterfaceResponse, AnnouncementRequest
+from erl2.srv import Oracle
+from erl_assignment3.srv import  Announcement, ArmorInterface, ArmorInterfaceResponse, AnnouncementRequest
 from armor_msgs.srv import ArmorDirective
 from erl_assignment3.srv import Marker, MarkerRequest, MarkerResponse
 from std_msgs.msg import Int64
@@ -128,8 +127,8 @@ def clbk(req):
 
     '''
     global client_oracle_solution, client_armor, client_announce
-    global erloracle
-    global checked
+    
+    #global checked
     _res = ArmorInterfaceResponse()
 
     # initialisation of the ontology
@@ -163,7 +162,7 @@ def clbk(req):
         if str(resp.ID) == check_id:
             rospy.loginfo('CORRECT')
             
-            resp=ontology_interaction('SAVE','INFERENCE','',['/root/ros_ws/src/erl_assignment3/cluedo_ontology_inference.owl'])
+            resp=ontology_interaction('SAVE','INFERENCE','',['/root/ros_ws/src/erl3_aruco/erl_assignment3/cluedo_ontology_inference.owl'])
             _res.success = True
             _res.ID = int(check_id)
         #if it is not correct add the incorrect hypothesis to the incorrect class 
@@ -245,9 +244,10 @@ def clbk(req):
         #perceive hint mode
         rospy.loginfo('PERCEIVE HINT')
         _res.mode = 3
-        erloracle.key=res.key
-        eloracle.ID=res.ID
-        erloracle.value=res.value
+        erloracle=ErlOracle()
+        erloracle.key=req.key
+        erloracle.ID=req.ID
+        erloracle.value=req.value
         #if a field is empty or -1 the perceived hint is malformed
         if erloracle.key == '' or erloracle.value == '-1':
             rospy.loginfo('malformed hints hint perceived: lens is dirty!!')
@@ -272,12 +272,8 @@ def clbk(req):
 
             # otherwise it add the object to the ontology
             else:
-                #if the hint has been already perceived that means that arm not correctly moved the code returns false
-                if checked==True:
-                   rospy.loginfo('Gripper not correct positioned, I have perceived an hint already perceived!')
-                   _res.success=False
-                   return _res
-                #otherwise I add the hint to the ontology
+               
+                #add the hint to the ontology
                 _res.success = True
                 r1 = ontology_interaction(
                     'ADD', 'OBJECTPROP', 'IND', [
@@ -313,8 +309,8 @@ def clbk(req):
 
 def main():
     global client_armor,client_oracle_solution,client_announce, client_oracle_hint
-    global erloracle
-    global checked
+    
+    #global checked
     
     
     # init node
@@ -325,14 +321,10 @@ def main():
     client_armor = rospy.ServiceProxy('armor_interface_srv', ArmorDirective)
     client_announce = rospy.ServiceProxy('announce_service', Announcement)
     
-    #init erloracle msg to store hint 
-    erloracle=ErlOracle()
-    erloracle.key=''
-    erloracle.value=''
-    erloracle.ID=''
+ 
     
     #checked value initialisation
-    checked=True
+    #checked=True
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
 

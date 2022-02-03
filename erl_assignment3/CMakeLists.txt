@@ -19,7 +19,6 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   actionlib
   actionlib_msgs
-  motion_plan
   armor_msgs
 )
 
@@ -85,7 +84,7 @@ find_package(OpenCV REQUIRED)
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
    DEPENDENCIES
-   erl2  geometry_msgs sensor_msgs  move_base_msgs   std_msgs nav_msgs actionlib_msgs motion_plan armor_msgs
+   erl2  geometry_msgs sensor_msgs  move_base_msgs   std_msgs nav_msgs actionlib_msgs  armor_msgs
 # Or other packages containing msgs
  )
 
@@ -183,7 +182,7 @@ add_executable(final_oracle src/simulation.cpp)
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
  catkin_install_python(PROGRAMS
-   scripts/FSM.py scripts/wall_follow_service_m.py scripts/AnnounceHypotesis.py scripts/ArmorInterface.py
+   scripts/FSM.py scripts/AnnounceHypotesis.py scripts/ArmorInterface.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

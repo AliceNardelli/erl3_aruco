@@ -17,7 +17,7 @@
   <!-- Start Rviz -->  
    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" ></node>
    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> 
-   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find erl_assignment3)/config/sim_nocamera.rviz" />
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find erl_assignment3)/config/sim_complete.rviz" />
   <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_urdf)/urdf.rviz" />-->
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->

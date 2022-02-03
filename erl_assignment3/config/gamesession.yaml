@@ -1,7 +1,7 @@
 current_hypotesis: ['','','','']
 curr_ID: ' '
 ontology: 'http://www.emarolab.it/cluedo-ontology'
-ontology_path: '/root/ros_ws/src/erl_assignment3/cluedo_ontology.owl'
+ontology_path: '/root/ros_ws/src/erl3_aruco/erl_assignment3/cluedo_ontology.owl'
 
 actual_location: 0
 

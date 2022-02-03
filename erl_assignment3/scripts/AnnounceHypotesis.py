@@ -1,16 +1,16 @@
 #! /usr/bin/env python
-"""
+'''
 Module:
 	AnnounceHypotesis
 Author:
 	Alice Nardelli alice.nardelli98@gmail.com
-ROS nodes used for simulating the robot announcement. Given an hypotesis it announces it simply printing on terminal.
+ROS nodes used for simulating the robot announcement. Given an hypotesis it announces it simply printing on terminal. 
 Service :
 	/announce_service to get the hypotesis to announce
-Service Client:
-        /reaching_goal client call to reach the centre of the arena
+Action Client:
+        /move_base client call to reach the centre of the apartment
         
-"""
+'''
 import rospy
 import random
 from erl2.srv import Announcement, AnnouncementResponse
@@ -31,16 +31,14 @@ def announce_clbk(req):
     Room_x = [-4,-4,-4,5,5,5]
     Room_y = [-3,2,7,-7,-3,1]
     rospy.loginfo('moving at the centr of the arena')
-    #reach the centre of the arena 
+    #reach the centre of the arena with move_nase
     client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
-
-    # Waits until the action server has started up and started
-    # listening for goals.
+    #wait for server
     client.wait_for_server()
+    #fill the message
     msg=MoveBaseGoal()
     msg.target_pose.header.frame_id="map";
-    msg.target_pose.pose.orientation.w=1;
-        #take from parameters the position that must be reached
+    msg.target_pose.pose.orientation.w=1;       
     msg.target_pose.pose.position.x=0
     msg.target_pose.pose.position.y=-1
 
@@ -57,12 +55,12 @@ def announce_clbk(req):
     rospy.loginfo('Announce to Oracle: ')
     rospy.loginfo(req.who + ' with the ' + req.what + ' in the ' + req.where)
     #return to the starting location
-
+    #get the starting location
     actual_loc = rospy.get_param('/actual_location')
 
-    goal.target_pose.pose.position.x = Room_x[actual_location-1]
-    goal.target_pose.pose.position.y = Room_y[actual_location-1]
-    client.send_goal(goal)
+    msg.target_pose.pose.position.x = Room_x[actual_loc-1]
+    msg.target_pose.pose.position.y = Room_y[actual_loc-1]
+    client.send_goal(msg)
     client.wait_for_result()
 
     

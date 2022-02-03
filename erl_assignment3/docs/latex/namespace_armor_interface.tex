@@ -1,0 +1,94 @@
+\hypertarget{namespace_armor_interface}{}\doxysection{Armor\+Interface Namespace Reference}
+\label{namespace_armor_interface}\index{ArmorInterface@{ArmorInterface}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_armor_interface_a6b31267716691d6db4933582112e9a14}{ontology\+\_\+interaction}} (command, primary\+\_\+command\+\_\+spec, secondary\+\_\+command\+\_\+spec, arg)
+\item 
+def \mbox{\hyperlink{namespace_armor_interface_a34193ef95a10a342f03146dff125b3df}{menage\+\_\+response}} (st)
+\item 
+def \mbox{\hyperlink{namespace_armor_interface_a813a17c3ef31fb7982c8159e40019fd1}{load\+\_\+initialize\+\_\+ontology}} ()
+\item 
+def \mbox{\hyperlink{namespace_armor_interface_a4dcc9dab5b6a00f7e3d7ce20fb28623f}{clbk}} (req)
+\item 
+def \mbox{\hyperlink{namespace_armor_interface_aca9859bb5c932c58437298f0599a492d}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module:
+ArmorInterface
+Author:
+Alice Nardelli alice.nardelli98@gmail.com
+ROS nodes used for menaging with aRMOR. 
+Service :
+   /armor_interface server called to menage with aRMOR according to the needs of the client node
+Sevice Client:
+   /oracle_solution sevice called to get the id of the correct hypothesis
+   /armor_interface_srv service called to load messages and interface with armor
+   /announce_service called to start the announce hypothesis behavior\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_armor_interface_a4dcc9dab5b6a00f7e3d7ce20fb28623f}\label{namespace_armor_interface_a4dcc9dab5b6a00f7e3d7ce20fb28623f}} 
+\index{ArmorInterface@{ArmorInterface}!clbk@{clbk}}
+\index{clbk@{clbk}!ArmorInterface@{ArmorInterface}}
+\doxysubsubsection{\texorpdfstring{clbk()}{clbk()}}
+{\footnotesize\ttfamily def Armor\+Interface.\+clbk (\begin{DoxyParamCaption}\item[{}]{req }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Description of the calbk:
+The node can interface in four different way with armor defendig on the mode fiel of the request.
+If mode is 0 the ontology is loaded and initialized. 
+If mode is 1 the current hypothesis'id is compared to the correct one. In case they are equal the game ends.
+Mode 2 involves to check if there are new consistent hypothesis.
+Finally mode 3 means that robot try to perceive a new hint. If perceived the hint will be loaded on the ontology.
+Args:
+   msg(ArmorInterfaceRequest): retrieved by */armor_interface* sevice
+Returns:
+   msg(ArmorInterfaceResponse): published by */armor_interface* sevice\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_armor_interface_a813a17c3ef31fb7982c8159e40019fd1}\label{namespace_armor_interface_a813a17c3ef31fb7982c8159e40019fd1}} 
+\index{ArmorInterface@{ArmorInterface}!load\_initialize\_ontology@{load\_initialize\_ontology}}
+\index{load\_initialize\_ontology@{load\_initialize\_ontology}!ArmorInterface@{ArmorInterface}}
+\doxysubsubsection{\texorpdfstring{load\_initialize\_ontology()}{load\_initialize\_ontology()}}
+{\footnotesize\ttfamily def Armor\+Interface.\+load\+\_\+initialize\+\_\+ontology (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}         Description of the load_initialize_ontology function:
+         This function is used to load the ontology and initialize the classes
+         Args:
+           None
+         Returns:
+           None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_armor_interface_aca9859bb5c932c58437298f0599a492d}\label{namespace_armor_interface_aca9859bb5c932c58437298f0599a492d}} 
+\index{ArmorInterface@{ArmorInterface}!main@{main}}
+\index{main@{main}!ArmorInterface@{ArmorInterface}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def Armor\+Interface.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_armor_interface_a34193ef95a10a342f03146dff125b3df}\label{namespace_armor_interface_a34193ef95a10a342f03146dff125b3df}} 
+\index{ArmorInterface@{ArmorInterface}!menage\_response@{menage\_response}}
+\index{menage\_response@{menage\_response}!ArmorInterface@{ArmorInterface}}
+\doxysubsubsection{\texorpdfstring{menage\_response()}{menage\_response()}}
+{\footnotesize\ttfamily def Armor\+Interface.\+menage\+\_\+response (\begin{DoxyParamCaption}\item[{}]{st }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}         Description of the menage_response function:
+         This function is used to menage the strings retrieved by aRMOR service
+         Args:
+           st: string to manage
+         Returns:
+           st: arranged string\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_armor_interface_a6b31267716691d6db4933582112e9a14}\label{namespace_armor_interface_a6b31267716691d6db4933582112e9a14}} 
+\index{ArmorInterface@{ArmorInterface}!ontology\_interaction@{ontology\_interaction}}
+\index{ontology\_interaction@{ontology\_interaction}!ArmorInterface@{ArmorInterface}}
+\doxysubsubsection{\texorpdfstring{ontology\_interaction()}{ontology\_interaction()}}
+{\footnotesize\ttfamily def Armor\+Interface.\+ontology\+\_\+interaction (\begin{DoxyParamCaption}\item[{}]{command,  }\item[{}]{primary\+\_\+command\+\_\+spec,  }\item[{}]{secondary\+\_\+command\+\_\+spec,  }\item[{}]{arg }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}       Description of the ontology_interaction function:
+       This function is used to interface with the ontology through the aRMOR action server. It get as argument all fields of the ArmorDirective message to fill.
+       Args:
+          command
+          primary_command_spec
+          secondary_command_spec
+          arg
+       Returns:
+          msg(ArmorDirectiveRes)\end{DoxyVerb}
+ 

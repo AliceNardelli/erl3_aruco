@@ -1,4 +1,4 @@
-#include <aruco_ros/aruco_ros_utils.h>
+#include <aruco_ros_assignment/aruco_ros_utils.h>
 #include <ros/console.h>
 #include <ros/assert.h>
 #include <iostream>

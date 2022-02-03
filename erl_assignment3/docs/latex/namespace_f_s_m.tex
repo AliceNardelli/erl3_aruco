@@ -1,0 +1,129 @@
+\hypertarget{namespace_f_s_m}{}\doxysection{F\+SM Namespace Reference}
+\label{namespace_f_s_m}\index{FSM@{FSM}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_af1baacdb0adeb20a782c5d9df6d895b0}{move\+\_\+base}} (x, y)
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_ad7c154a4c64cc07458665bd4eca95b6d}{cbk\+\_\+auco}} (data)
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_a93b126fb585cb332740516109a0efeeb}{armor\+\_\+client}} (new\+\_\+id)
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_ad58b9d97dc314d93ff96d98337d45067}{rotate}} (w)
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_a779a133b1b1b500d068d09c30244dff8}{change\+\_\+room}} ()
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_afa74c98eb2560370c655037b2a813d43}{rnd\+\_\+move}} ()
+\item 
+def \mbox{\hyperlink{namespace_f_s_m_acc99b577ee61be1b7cc0e2baae140224}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module:
+FSM
+Author:
+Alice Nardelli alice.nardelli98@gmail.com
+ROS node devoted to simulate robot behaviour and to synchronize the whole simulation
+
+Service Client:
+    /oracle_hint to get the hint corresponding to a specific id
+
+Action Client:
+    /move_base used for navigation purpose
+
+Subscribers:
+    /aruco_id to get the id of the detected hint
+
+Publishers:
+    /geometry_msgs to make rotate the robot\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_f_s_m_a93b126fb585cb332740516109a0efeeb}\label{namespace_f_s_m_a93b126fb585cb332740516109a0efeeb}} 
+\index{FSM@{FSM}!armor\_client@{armor\_client}}
+\index{armor\_client@{armor\_client}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{armor\_client()}{armor\_client()}}
+{\footnotesize\ttfamily def F\+S\+M.\+armor\+\_\+client (\begin{DoxyParamCaption}\item[{}]{new\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}       Description of the armor_client function:
+       Inside this function when a new id is perceived the /oracle_hint service to get the hint corresponding to that id.
+       Then the /armor_interface client is called in orde to add the hint to the ontology.
+       If the hint is correctly perceived it ask if there is a new consistent hypothesis
+       If there is it check if the actual consistent hypothesis is also correct
+       Args:
+          new_id
+       Returns:
+          None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_f_s_m_ad7c154a4c64cc07458665bd4eca95b6d}\label{namespace_f_s_m_ad7c154a4c64cc07458665bd4eca95b6d}} 
+\index{FSM@{FSM}!cbk\_auco@{cbk\_auco}}
+\index{cbk\_auco@{cbk\_auco}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{cbk\_auco()}{cbk\_auco()}}
+{\footnotesize\ttfamily def F\+S\+M.\+cbk\+\_\+auco (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}       Description of the cbk_aruco:
+       This is the callback ot /aruco_id topic. it is used for saving the new perceived id
+       Args:
+          data
+       Returns:
+          None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_f_s_m_a779a133b1b1b500d068d09c30244dff8}\label{namespace_f_s_m_a779a133b1b1b500d068d09c30244dff8}} 
+\index{FSM@{FSM}!change\_room@{change\_room}}
+\index{change\_room@{change\_room}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{change\_room()}{change\_room()}}
+{\footnotesize\ttfamily def F\+S\+M.\+change\+\_\+room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}      Description of the change_room function:
+      This function is called each time the robot change the room.
+      The actual room is saved on parameter server
+      The move_base function is called
+      Args:
+         None
+      Returns:
+         None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_f_s_m_acc99b577ee61be1b7cc0e2baae140224}\label{namespace_f_s_m_acc99b577ee61be1b7cc0e2baae140224}} 
+\index{FSM@{FSM}!main@{main}}
+\index{main@{main}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def F\+S\+M.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_f_s_m_af1baacdb0adeb20a782c5d9df6d895b0}\label{namespace_f_s_m_af1baacdb0adeb20a782c5d9df6d895b0}} 
+\index{FSM@{FSM}!move\_base@{move\_base}}
+\index{move\_base@{move\_base}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{move\_base()}{move\_base()}}
+{\footnotesize\ttfamily def F\+S\+M.\+move\+\_\+base (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}       Description of the move_base function:
+       This function is used to call the move_base action server
+       Args:
+          x
+          y
+       Returns:
+          None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_f_s_m_afa74c98eb2560370c655037b2a813d43}\label{namespace_f_s_m_afa74c98eb2560370c655037b2a813d43}} 
+\index{FSM@{FSM}!rnd\_move@{rnd\_move}}
+\index{rnd\_move@{rnd\_move}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{rnd\_move()}{rnd\_move()}}
+{\footnotesize\ttfamily def F\+S\+M.\+rnd\+\_\+move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}      Description of the rdn_move function:
+      This function is called each time the robot is inside a room.
+      The robot does 5 random movement with move_base, when the target is reached it rotate for at most ten seconds
+      Meantime it check if it has perceived new id. If true it call armor_interface() function
+      Args:
+         None
+      Returns:
+         None\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_f_s_m_ad58b9d97dc314d93ff96d98337d45067}\label{namespace_f_s_m_ad58b9d97dc314d93ff96d98337d45067}} 
+\index{FSM@{FSM}!rotate@{rotate}}
+\index{rotate@{rotate}!FSM@{FSM}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily def F\+S\+M.\+rotate (\begin{DoxyParamCaption}\item[{}]{w }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Description of the rotate function:
+    This function is used to rotate the robot publishing an angualar velocity as Twist() message
+    Args:
+       w
+    Returns:
+       None\end{DoxyVerb}
+ 
