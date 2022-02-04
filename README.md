@@ -1,5 +1,5 @@
 # erl3_aruco
 
-The report and the documentation are inside the erl3_assignment folder
+In this repository two packages are present: the package devoted to the aruco detection and the effective code. The report is inside the **erl3_assignment** folder.
 
 
